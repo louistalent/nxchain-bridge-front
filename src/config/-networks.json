@@ -1,0 +1,198 @@
+{
+    "NEON": {
+        "label": "NeonChain",
+        "bridge": "0xC1a4375462bEb257E5bB3B5Fba702BB8948B4816",
+        "chainId": 259,
+        "confirmations": 1,
+        "blocktime": 1000,
+        "rpc": "https://mainnet.neonlink.io",
+        "explorer": "https://scan.neonlink.io",
+        "service": "bridge",
+        "erc20": "ERC20",
+        "tokens": {
+            "ETH": {
+                "label": "Pegged ETH",
+                "contract": "0xdb5EF191dCF99cbb699Cc978B5A608f9D50Ff6b2",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDT": {
+                "label": "Pegged USDT",
+                "contract": "0x3940b5fb1d4B2e89159aDe423afB594Aab894ca6",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDC": {
+                "label": "Pegged USDC",
+                "contract": "0xacf80c52d755050BDAD7bb73C75F5a454421B16f",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BUSD": {
+                "label": "Pegged BUSD",
+                "contract": "0x0Ef1C468F1fEF76F66E1ab0eF4e612120327C459",
+                "decimals": 18,
+                "pegging": true
+            },
+            "TUSD": {
+                "label": "Pegged TUSD",
+                "contract": "0x504520657AC54b0295819dAC975385aE6B69Fb36",
+                "decimals": 18,
+                "pegging": true
+            },
+            "WBTC": {
+                "label": "Pegged WBTC",
+                "contract": "0x15c46Aed8847245E8BD1BA4604d4E367aBB83F0D",
+                "decimals": 18,
+                "pegging": true
+            },
+            "LINK": {
+                "label": "Pegged LINK",
+                "contract": "0x20720c8CAc6AD9C5a55EB574114F73B37b00F3Fb",
+                "decimals": 18,
+                "pegging": true
+            },
+            "UNI": {
+                "label": "Pegged UNI",
+                "contract": "0xe6a30793825FAB4D7009e887a9e57A602c7575a4",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BNB": {
+                "label": "Pegged BNB",
+                "contract": "0x408D105E3704795E8802B9e25b33D209B230Cd8b",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BTC": {
+                "label": "Pegged BTC",
+                "contract": "0x0cF3cCE491EDD3736e207B97A9C5A0D8acFf3079",
+                "decimals": 18,
+                "pegging": true
+            },
+            "AVAX": {
+                "label": "Pegged AVAX",
+                "contract": "0x05beb170814357F80F0C467F727A79b41632AFC0",
+                "decimals": 18,
+                "pegging": true
+            },
+            "MATIC": {
+                "label": "Pegged MATIC",
+                "contract": "0x116C3027D9450f13342F816614476155623F40Ca",
+                "decimals": 18,
+                "pegging": true
+            }
+        }
+    },
+    "ETH": {
+        "label": "Ethereum",
+        "bridge": "0xC1a4375462bEb257E5bB3B5Fba702BB8948B4816",
+        "chainId": 1,
+        "confirmations": 12,
+        "blocktime": 15000,
+        "rpc": "https://mainnet.infura.io/v3/566c54809b2d44f7b922a5fb4bf4b3a2",
+        "explorer": "https://etherscan.io/",
+        "service": "https://binance.com",
+        "erc20": "ERC20",
+        "tokens": {
+            "NEON": {
+                "label": "Neon Coin",
+                "contract": "0xdb5EF191dCF99cbb699Cc978B5A608f9D50Ff6b2",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDT": {
+                "label": "Tether USD",
+                "contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                "decimals": 6
+            },
+            "USDC": {
+                "label": "USD Coin",
+                "contract": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "decimals": 6
+            },
+            "BUSD": {
+                "label": "Binance USD",
+                "contract": "0x4Fabb145d64652a948d72533023f6E7A623C7C53",
+                "decimals": 18
+            }
+        }
+    },
+    "BNB": {
+        "label": "BNBChain",
+        "bridge": "0xC1a4375462bEb257E5bB3B5Fba702BB8948B4816",
+        "chainId": 56,
+        "confirmations": 12,
+        "blocktime": 15000,
+        "rpc": "https://bsc-dataseed.binance.org/",
+        "explorer": "https://bscscan.com/",
+        "service": "https://binance.com",
+        "erc20": "BEP20",
+        "tokens": {
+            "NEON": {
+                "label": "Neon Coin",
+                "contract": "0xdb5EF191dCF99cbb699Cc978B5A608f9D50Ff6b2",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDT": {
+                "label": "Tether USD",
+                "contract": "0x55d398326f99059fF775485246999027B3197955",
+                "decimals": 18
+            },
+            "BUSD": {
+                "label": "Binance USD",
+                "contract": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+                "decimals": 18
+            }
+        }
+    },
+    "AVAX": {
+        "label": "Avalance",
+        "bridge": "0xC1a4375462bEb257E5bB3B5Fba702BB8948B4816",
+        "chainId": 43114,
+        "confirmations": 12,
+        "blocktime": 5000,
+        "rpc": "https://api.avax.network/ext/bc/C/rpc",
+        "explorer": "https://snowtrace.io",
+        "service": "https://binance.com",
+        "erc20": "ERC20",
+        "tokens": {
+            "NEON": {
+                "label": "Neon Coin",
+                "contract": "0xdb5EF191dCF99cbb699Cc978B5A608f9D50Ff6b2",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDT": {
+                "label": "Tether USD",
+                "contract": "0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7",
+                "decimals": 6
+            },
+            "USDC": {
+                "label": "USD Coin",
+                "contract": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+                "decimals": 6
+            }
+        }
+    },
+    "MATIC": {
+        "label": "Polygon",
+        "bridge": "0xC1a4375462bEb257E5bB3B5Fba702BB8948B4816",
+        "chainId": 137,
+        "confirmations": 12,
+        "blocktime": 15000,
+        "rpc": "https://polygon-rpc.com/",
+        "explorer": "https://polygonscan.com/",
+        "service": "https://binance.com",
+        "erc20": "ERC20",
+        "tokens": {
+            "NEON": {
+                "label": "Neon Coin",
+                "contract": "0xdb5EF191dCF99cbb699Cc978B5A608f9D50Ff6b2",
+                "decimals": 18,
+                "pegging": true
+            }
+        }
+    }
+}

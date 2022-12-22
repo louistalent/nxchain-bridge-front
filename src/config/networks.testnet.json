@@ -1,0 +1,184 @@
+{
+    "CXS": {
+        "label": "Nxchain",
+        "bridge": "",
+        "chainId": 787,
+        "confirmations": 1,
+        "blocktime": 1000,
+        "rpc": "https://testnet.nxchainscan.com:4444/",
+        "explorer": "https://testnet.nxchainscan.com",
+        "service": "bridge",
+        "erc20": "ERC20",
+        "tokens": {
+            "CXS": {
+                "label": "Pegged CXS",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BUSD": {
+                "label": "Pegged BUSD",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "NEXTEP": {
+                "label": "Pegged NEXTEP",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDT": {
+                "label": "Pegged USDT",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "SHIB": {
+                "label": "Pegged SHIB",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "DOGE": {
+                "label": "Pegged DOGE",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BTC": {
+                "label": "Pegged BTC",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "ETH": {
+                "label": "Pegged ETH",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "DAI": {
+                "label": "Pegged DAI",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BNB": {
+                "label": "Pegged BNB",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "XRP": {
+                "label": "Pegged XRP",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "MATIC": {
+                "label": "Pegged MATIC",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BABYDOGE": {
+                "label": "Pegged BABYDOGE",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            }
+        }
+    },
+    "BNB": {
+        "label": "Binance",
+        "bridge": "",
+        "chainId": 97,
+        "confirmations": 12,
+        "blocktime": 15000,
+        "rpc": "https://data-seed-prebsc-1-s1.binance.org:8545",
+        "explorer": "https://testnet.bscscan.com/",
+        "service": "https://binance.com",
+        "erc20": "BEP20",
+        "tokens": {
+            "CXS": {
+                "label": "Pegged CXS",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BUSD": {
+                "label": "Pegged BUSD",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "NEXTEP": {
+                "label": "Pegged NEXTEP",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDT": {
+                "label": "Pegged USDT",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "SHIB": {
+                "label": "Pegged SHIB",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "DOGE": {
+                "label": "Pegged DOGE",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BTC": {
+                "label": "Pegged BTC",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "ETH": {
+                "label": "Pegged ETH",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "DAI": {
+                "label": "Pegged DAI",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BNB": {
+                "label": "Pegged BNB",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "XRP": {
+                "label": "Pegged XRP",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "MATIC": {
+                "label": "Pegged MATIC",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BABYDOGE": {
+                "label": "Pegged BABYDOGE",
+                "contract": "",
+                "decimals": 18,
+                "pegging": true
+            }
+        }
+    }
+}

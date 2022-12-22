@@ -1,0 +1,273 @@
+{
+    "NEON": {
+        "label": "Neon Link Testnet",
+        "bridge": "0x24f0deE486Ee7edF57555768a93EF4d3c94Cf2b8",
+        "chainId": 9559,
+        "confirmations": 1,
+        "blocktime": 1000,
+        "rpc": "https://testnet.neonlink.io",
+        "explorer": "https://testnet-scan.neonlink.io",
+        "service": "bridge",
+        "erc20": "ERC20",
+        "tokens": {
+            "ETH": {
+                "label": "Pegged ETH",
+                "contract": "0xea2dc13331F084CC73a659Bd8B91a3bbF1C4f00a",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDT": {
+                "label": "Pegged USDT",
+                "contract": "0x1d5793CBfbE9529C866697d9b8a9952a181ee918",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDC": {
+                "label": "Pegged USDC",
+                "contract": "0x357B7818E8F47A3bAD35E92Ae08469c399B465bd",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BUSD": {
+                "label": "Pegged BUSD",
+                "contract": "0xE4d9b04aa7ae72AD85e1991aBca785E68D3F023b",
+                "decimals": 18,
+                "pegging": true
+            },
+            "TUSD": {
+                "label": "Pegged TUSD",
+                "contract": "0xd13FFDd667F088b2280a2A46601dF56eeeed40da",
+                "decimals": 18,
+                "pegging": true
+            },
+            "WBTC": {
+                "label": "Pegged WBTC",
+                "contract": "0xf02242E1447E95dD86bd1D833F0be2468E765b8F",
+                "decimals": 18,
+                "pegging": true
+            },
+            "LINK": {
+                "label": "Pegged LINK",
+                "contract": "0x4290Cd3770049EDAFD5DDf7061bAd07076A808e7",
+                "decimals": 18,
+                "pegging": true
+            },
+            "UNI": {
+                "label": "Pegged UNI",
+                "contract": "0xfd96Fa6600f6b93e3A5BdFc3b22Ba34C040CbeDF",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BNB": {
+                "label": "Pegged BNB",
+                "contract": "0x2fecDdC22639835F28A71FB00cCC4B891bE89a3E",
+                "decimals": 18,
+                "pegging": true
+            },
+            "BTC": {
+                "label": "Pegged BTC",
+                "contract": "0xa2261821760f56d878902DD5C929d4203e4edCfD",
+                "decimals": 18,
+                "pegging": true
+            },
+            "AVAX": {
+                "label": "Pegged AVAX",
+                "contract": "0x1Fbaa2985E0f7d6F0AC173Bc9ED3E7Fc9b2324FB",
+                "decimals": 18,
+                "pegging": true
+            },
+            "MATIC": {
+                "label": "Pegged MATIC",
+                "contract": "0x76c44cEc92253837429D23338Da404B40600C8a8",
+                "decimals": 18,
+                "pegging": true
+            }
+        }
+    },
+    "ETH": {
+        "label": "Ethereum rinkeby",
+        "bridge": "0x452cfa18D3e4758EE28731B564FAA2C85f77Fbec",
+        "chainId": 4,
+        "confirmations": 12,
+        "blocktime": 15000,
+        "rpc": "https://rinkeby.infura.io/v3/566c54809b2d44f7b922a5fb4bf4b3a2",
+        "explorer": "https://rinkeby.etherscan.io/",
+        "service": "https://binance.com",
+        "erc20": "ERC20",
+        "tokens": {
+            "NEON": {
+                "label": "Neon Coin",
+                "contract": "0xA450872987100D3FB3cB48A99DA802a4779cF047",
+                "decimals": 18,
+                "pegging": true,
+                "fake": true
+            },
+            "USDT": {
+                "label": "Tether USD",
+                "contract": "0xaD5B783844E2641F5efA5e69a27FAb3a11C42DD1",
+                "decimals": 6,
+                "fake": true
+            },
+            "USDC": {
+                "label": "USD Coin",
+                "contract": "0x88b529Dd9636C1C92cB7aec29a08fc1dA883e06d",
+                "decimals": 6,
+                "fake": true
+            },
+            "BUSD": {
+                "label": "Binance USD",
+                "contract": "0x842a3b628f52044209C5588D2EFd5e1b6Da24597",
+                "decimals": 18,
+                "fake": true
+            },
+            "TUSD": {
+                "label": "TrueUSD",
+                "contract": "0x9c9b9358F4cf4503A1187137A614f71926f65a43",
+                "decimals": 18,
+                "fake": true
+            },
+            "WBTC": {
+                "label": "Wrapped BTC",
+                "contract": "0x802ec97D9604303C0F2B07193c69F356de405bea",
+                "decimals": 8,
+                "fake": true
+            },
+            "LINK": {
+                "label": "ChainLink Token",
+                "contract": "0x3aa0D98587E167007fE203ba1507b9a4B95b5558",
+                "decimals": 18,
+                "fake": true
+            },
+            "UNI": {
+                "label": "Uniswap",
+                "contract": "0xad6b2E3E37D3A80E4300d6B1b991e518E01A56Ce",
+                "decimals": 18,
+                "fake": true
+            }
+        }
+    },
+    "BNB": {
+        "label": "BNBChain Testnet",
+        "bridge": "0x3192D61164352fA34E9ac82cEBCe1D019204148b",
+        "chainId": 97,
+        "confirmations": 12,
+        "blocktime": 15000,
+        "rpc": "https://data-seed-prebsc-1-s1.binance.org:8545",
+        "explorer": "https://testnet.bscscan.com/",
+        "service": "https://binance.com",
+        "erc20": "BEP20",
+        "tokens": {
+            "NEON": {
+                "label": "Neon Coin",
+                "contract": "0xDd900b9c77cAbAa8b268DDc79aD0Ec4Df11E26f1",
+                "decimals": 18,
+                "pegging": true,
+                "fake": true
+            },
+            "USDT": {
+                "label": "Tether USD",
+                "contract": "0xcE01b986e89f813b6fc71D774049750496a01506",
+                "decimals": 18,
+                "fake": true
+            },
+            "USDC": {
+                "label": "USD Coin",
+                "contract": "0x5b2764b02879B2Cd281119f834F48A4D450f77b0",
+                "decimals": 18,
+                "fake": true
+            },
+            "BUSD": {
+                "label": "Binance USD",
+                "contract": "0xB7aB4C6BfF391164e0a62259Ea879DEb3313dB50",
+                "decimals": 18,
+                "fake": true
+            },
+            "TUSD": {
+                "label": "TrueUSD",
+                "contract": "0x673A49BAb5e82f6380a0d0Ad40C8016a7293062C",
+                "decimals": 18,
+                "fake": true
+            },
+            "BTC": {
+                "label": "Wrapped BTC",
+                "contract": "0xFd72734Eb26F8c5D8e5e7764cc8F2C2D6c04134C",
+                "decimals": 18,
+                "fake": true
+            },
+            "LINK": {
+                "label": "ChainLink Token",
+                "contract": "0xac21E9b0Ab0c5A09C0310A6e9Dedb972f9D98B83",
+                "decimals": 18,
+                "fake": true
+            },
+            "UNI": {
+                "label": "Uniswap",
+                "contract": "0x7DE21C4dC8D0895796DC0e08E0E43784eE1F10F9",
+                "decimals": 18,
+                "fake": true
+            }
+        }
+    },
+    "AVAX": {
+        "label": "Avalance Fuji",
+        "bridge": "0x452cfa18D3e4758EE28731B564FAA2C85f77Fbec",
+        "chainId": 43113,
+        "confirmations": 12,
+        "blocktime": 5000,
+        "rpc": "https://api.avax-test.network/ext/bc/C/rpc",
+        "explorer": "https://testnet.snowtrace.io",
+        "service": "https://binance.com",
+        "erc20": "ERC20",
+        "tokens": {
+            "NEON": {
+                "label": "Neon Coin",
+                "contract": "0xA450872987100D3FB3cB48A99DA802a4779cF047",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDT": {
+                "label": "Tether USD",
+                "contract": "0xaD5B783844E2641F5efA5e69a27FAb3a11C42DD1",
+                "decimals": 18,
+                "fake": true
+            },
+            "USDC": {
+                "label": "USD Coin",
+                "contract": "0x88b529Dd9636C1C92cB7aec29a08fc1dA883e06d",
+                "decimals": 18,
+                "fake": true
+            }
+        }
+    },
+    "MATIC": {
+        "label": "Polygon Testnet",
+        "bridge": "0xA532CA6685dD4894673189BBaF9032154b9799D5",
+        "chainId": 80001,
+        "confirmations": 12,
+        "blocktime": 15000,
+        "rpc": "https://matic-mumbai.chainstacklabs.com",
+        "explorer": "https://mumbai.polygonscan.com/",
+        "service": "https://binance.com",
+        "erc20": "ERC20",
+        "tokens": {
+            "NEON": {
+                "label": "Neon Coin",
+                "contract": "0xfD93857558BeaCA28f8b316E5948e27DAB5c41a7",
+                "decimals": 18,
+                "pegging": true
+            },
+            "USDT": {
+                "label": "Tether USD",
+                "contract": "0xF48bE358aB0529B76E5381366Cfc41746d25a102",
+                "decimals": 18,
+                "fake": true
+            },
+            "USDC": {
+                "label": "USD Coin",
+                "contract": "0xA7D0331267AEdA36B908536Ec8A113f8c7580666",
+                "decimals": 18,
+                "fake": true
+            }
+        }
+    }
+}

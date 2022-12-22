@@ -1,0 +1,22 @@
+{
+    "lang": "En",
+    "chain": "NxchainChain",
+    "bridge": "Nxchain Bridge",
+    "description": "The safe, fast and most secure way to bring cross-chain assets to NxchainChain.",
+    "wallet.connect": "Connect",
+    "chain.nxchain": "Nxchain network",
+    "chain.eth": "Ethereum network",
+    "chain.bnb": "Binance SmartChain",
+    "chain.avax": "Avalanche C",
+    "chain.matic": "Polygon",
+    "chain.trx": "Tron network",
+    "chain.ht": "HECO network",
+    "token.native": "Native Token",
+    "error.11001": "🦊 You must install Metamask into your browser: https://metamask.io/download.html",
+    "error.11002": "🦊 Walllet disconnected",
+    "error.11003": "🦊 No selected address.",
+    "error.11004": "🦊 Unknown error",
+    "error.11005": "🦊 Connect to Metamask using the button on the top right.",
+    "error.11006": "🦊 You cancelled requested operation.",
+    "error.11007": "🦊 Invalid chain id #:chainId"
+}
