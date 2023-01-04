@@ -121,6 +121,24 @@ iframe {
 html,
 body {
 	height: 100%;
+	&::-webkit-scrollbar {
+		position: absolute;
+		width: 5px;
+		height: 5px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #ddd;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #aaa;
+		border-radius: 5px;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: #888;
+	}
 }
 
 body {

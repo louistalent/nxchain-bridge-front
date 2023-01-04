@@ -11,6 +11,8 @@ interface DialogTokenProps {
 	address: string
 	onChange?: (token: string, balance: number) => void
 	onClose?: Function
+	walletStatus: any
+	setWalletStatus?: any
 }
 
 interface DialogTokenStatus {
@@ -22,12 +24,15 @@ interface DialogTokenValueType {
 	[token: string]: number
 }
 
-const DialogTokens = ({ chain, data, address, onChange, onClose }: DialogTokenProps) => {
+const DialogTokens = ({ chain, data, address, onChange, onClose, walletStatus, setWalletStatus }: DialogTokenProps) => {
 	const { checkBalance } = useStore()
 	const [checking, setChecing] = React.useState(false);
 	const [values, setValues] = React.useState<{ [token: string]: number }>({})
 
 	const onValue = (key: string, balance: number) => {
+		setWalletStatus({ ...walletStatus, err: '' })
+		console.log(key, balance, " key, balance")
+
 		if (onChange) onChange(key, balance);
 		if (onClose) onClose();
 	}

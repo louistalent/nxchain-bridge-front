@@ -2,7 +2,7 @@ require('dotenv').config();
 require('colors');
 const fs = require('fs');
 // const hre = require("hardhat");
-const testnet = process.env.TESTNET==="1"
+const testnet = process.env.TESTNET === "1"
 const symbol = process.env.SYMBOL
 
 const configFile = __dirname + '/../src/config/networks' + (testnet ? '.testnet' : '') + '.json'
@@ -14,10 +14,10 @@ async function main() {
 	{ // collecting token list
 		const _tokens = {}
 		for (let chain in networks) {
-			if (chain!==symbol) {
+			if (chain !== symbol) {
 				_tokens[chain] = true;
 				for (let k in networks[chain].tokens) {
-					if (k!==symbol) {
+					if (k !== symbol) {
 						_tokens[k] = true;
 					}
 				}
@@ -50,13 +50,13 @@ async function main() {
 		};
 	}
 	// const tx2 = 
-	const addrs = Object.values(tokens).map(i=>i.contract);
+	const addrs = Object.values(tokens).map(i => i.contract);
 	console.log(addrs);
 	await bridge.addTokens(addrs);
 	// await tx2.wait()
 
 	fs.writeFileSync(configFile, JSON.stringify({
-		...networks, 
+		...networks,
 		[symbol]: {
 			...networks[symbol],
 			bridge: bridge.address,

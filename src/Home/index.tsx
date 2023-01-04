@@ -199,18 +199,35 @@ const Home = () => {
 			try {
 				if (addedTokens[`${status.chain}-${symbol}`]) return;
 				// wasAdded is a boolean. Like any RPC method, an error may be thrown.
-				const wasAdded = await ethereum.request({
-					method: 'wallet_watchAsset',
-					params: {
-						type: 'ERC20', // Initially only supports ERC20, but eventually more!
-						options: {
-							address,
-							symbol,
-							decimals,
-							image: `https://resource.neonlink.io/symbol/${symbol.toLowerCase()}.svg` //  // symbol===SYMBOL ? '/logo.svg' : `/coins/${symbol}.svg`
+
+				let wasAdded: any;
+				if (symbol == "NEXTEP") {
+					wasAdded = await ethereum.request({
+						method: 'wallet_watchAsset',
+						params: {
+							type: 'ERC20', // Initially only supports ERC20, but eventually more!
+							options: {
+								address,
+								symbol,
+								decimals,
+								image: `https://bridge.nxchainscan.com/coins/${symbol.toUpperCase()}.png` //  // symbol===SYMBOL ? '/logo.svg' : `/coins/${symbol}.svg`
+							},
 						},
-					},
-				});
+					});
+				} else {
+					wasAdded = await ethereum.request({
+						method: 'wallet_watchAsset',
+						params: {
+							type: 'ERC20', // Initially only supports ERC20, but eventually more!
+							options: {
+								address,
+								symbol,
+								decimals,
+								image: `https://bridge.nxchainscan.com/coins/${symbol.toUpperCase()}.svg` //  // symbol===SYMBOL ? '/logo.svg' : `/coins/${symbol}.svg`
+							},
+						},
+					});
+				}
 				if (wasAdded) {
 					console.log(`token ${symbol} added!`);
 					addToken(status.chain, symbol);
@@ -307,7 +324,7 @@ const Home = () => {
 			setWalletStatus({ ...walletStatus, err: 'First, connect wallet.' })
 		} else {
 			// const chainIcon = status.chain === SYMBOL ? 'https://bridge.nxchainscan.com/nxchain.png' : `https://bridge.nxchainscan.com/networks/${status.chain}.svg`
-			const chainIcon = status.chain === SYMBOL ? 'https://bridge.nxchainscan.com/nxchain.png' : `/networks/${status.chain}.svg`
+			const chainIcon = status.chain === SYMBOL ? '/nxchain.png' : `/networks/${status.chain}.svg`
 			const ts = [
 				{ key: status.chain, label: networks[status.chain].label, icon: chainIcon }
 			] as ListDataType[]
@@ -325,7 +342,12 @@ const Home = () => {
 			const t = networks[status.chain].tokens[token];
 			await addTokenToWallet(t.contract || '', token, t.decimals);
 		}
+		console.log('onChangeToken : -> token, balance ')
+		console.log(token, balance)
+
 		const { receiveValue, fee } = getReceivedValue(status.chain, status.targetChain, token, Number(status.value));
+		console.log('receiveValue, fee : ')
+		console.log(receiveValue, fee)
 		set({ token, balance, receiveValue, fee })
 	}
 
@@ -391,9 +413,19 @@ const Home = () => {
 			if (base.gasPrices[chain] !== undefined) {
 				const feeEther = base.maxGasLimit * base.gasPrices[targetChain] / 1e9;
 				const decimals = token === targetChain ? 18 : networks[targetChain].tokens[token].decimals;
-				const fee = Number((feeEther * base.prices[targetChain] / base.prices[token]).toFixed(decimals < 6 ? decimals : 6));
+
+				const fee = Number((feeEther * base.prices[targetChain] / base.prices[token]).toFixed(decimals < 8 ? decimals : 8));
+				let tarFee = base.prices[targetChain];
+				let priToken = base.prices[token];
+				let result_ = feeEther * tarFee / priToken;
+
+				console.log('fee, tarFee,  priToken : ', fee, tarFee, priToken);
+
+				console.log('result_ : ');
+				console.log(result_);
+
 				if (amount > fee) {
-					const receiveValue = Number((amount - fee).toFixed(decimals < 6 ? decimals : 6));
+					const receiveValue = Number((amount - fee).toFixed(decimals < 8 ? decimals : 8));
 					return { receiveValue, fee };
 				}
 				return { receiveValue: 0, fee };
@@ -654,7 +686,7 @@ const Home = () => {
 						<div style={{ paddingTop: 20 }}>
 							<button disabled={status.loading} className="btn button full" onClick={submit}>
 								{status.loading ? (
-									<div className="flex center">
+									<div className="flex center " style={{ color: 'black' }}>
 										<div style={{ width: '1.5em' }}>
 											<div className="loader">Loading...</div>
 										</div>
@@ -693,7 +725,7 @@ const Home = () => {
 
 						<p className='mt-3 gray text-center'>Powered by Nxchain Link</p>
 					</div>
-					{tokens.show && walletStatus.address && <DialogTokens chain={status.chain} data={tokens.data} address={walletStatus.address} onChange={onChangeToken} onClose={() => setTokens({ ...tokens, show: false })} />}
+					{tokens.show && walletStatus.address && <DialogTokens chain={status.chain} data={tokens.data} address={walletStatus.address} onChange={onChangeToken} onClose={() => setTokens({ ...tokens, show: false })} walletStatus={walletStatus} setWalletStatus={() => setWalletStatus} />}
 				</main>
 			</div>
 		</div>

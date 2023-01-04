@@ -4,7 +4,11 @@ pragma solidity ^0.8.0;
 contract Token {
 	event Approval(address indexed owner, address indexed spender, uint value);
 	event Transfer(address indexed from, address indexed to, uint value);
-	
+	event OwnershipTransferred(
+        address indexed previousOwner,
+        address indexed newOwner
+    );
+
 	address public owner;
 	mapping(address => uint256) private _balances;
 	mapping(address => mapping(address => uint256)) private _allowances;
@@ -114,4 +118,18 @@ contract Token {
 	function burnFrom(address account, uint256 amount) external onlyOwner {
 		_burn(account, amount);
 	}
+
+	function transferOwnership(address newOwner) public onlyOwner {
+        _transferOwnership(newOwner);
+    }
+
+    function _transferOwnership(address newOwner) internal {
+        require(
+            newOwner != address(0),
+            "Ownable: new owner is the zero address"
+        );
+        emit OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
+    }
+
 }
