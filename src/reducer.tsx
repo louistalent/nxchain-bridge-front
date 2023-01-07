@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import networks from './config/networks.json'
 
 const locales = {
-    "en-US": require('./locales/en-US.json'),
-    "zh-CN": require('./locales/zh-CN.json'),
+	"en-US": require('./locales/en-US.json'),
+	"zh-CN": require('./locales/zh-CN.json'),
 };
 
 const lang = window.localStorage.getItem('lang') || 'en-US';
-export const DEFAULT_NET = 'ETH'
+export const DEFAULT_NET = 'BNB'
 
 const AppKey = process.env.REACT_APP_GTAG || ''
 // const chainIds = {};
@@ -29,7 +29,11 @@ const AppKey = process.env.REACT_APP_GTAG || ''
 // 	coins[networks[k].coin] = {[k]:{address:'-', decimals:networks[k].decimals}}
 // }
 let txs = [] as TxType[]
-let addedTokens = {} as {[token: string]: boolean}
+let addedTokens = {} as { [token: string]: boolean }
+let address = "";
+let walletProvder = "";
+let chainId = "";
+let signer = "";
 try {
 	let buf = window.localStorage.getItem(AppKey);
 	if (buf) txs = JSON.parse(buf);
@@ -41,18 +45,22 @@ try {
 
 const initialState: StoreObject = {
 	lang,
-    L: locales[lang],
+	L: locales[lang],
 
 	loading: false,
 	txs,
-	addedTokens
+	addedTokens,
+	address,
+	walletProvder,
+	chainId,
+	signer
 }
 
 export default createSlice({
 	name: 'bridge',
 	initialState,
 	reducers: {
-		update: (state:any, action) => {
+		update: (state: any, action) => {
 			for (const k in action.payload) {
 				if (state[k] === undefined) new Error('🦊 undefined account item')
 				state[k] = action.payload[k]

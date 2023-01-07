@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Web3Modal from "web3modal";
 
 import useStore, { CONNECTED, CONNECTING, ZERO, SYMBOL, networks, DISCONNECTED, proxy, NETWORK } from '../useStore';
 import './index.scss';
 import './home.scss';
 import ImgBack from '../assets/bg.webp'
+
 import InputCombo from '../components/InputCombo';
 import Loading from '../components/Loading';
 import DialogTokens from './DialogTokens';
 /* import { getApiUrl } from '../util'; */
-
-const ERR_INSTALL = '🦊 You must install Metamask into your browser: https://metamask.io/download.html'
-const ERR_DISCONNECTED = '🦊 walllet disconnected'
-const ERR_NOACCOUNTS = '🦊 No selected address.'
-const ERR_UNKNOWN = '🦊 Unknown error'
-const ERR_ASKCONNECT = '🦊 Connect to Metamask using the button on the top right.'
-const ERR_CANCELLED = '🦊 You cancelled requested operation.'
-const ERR_CHAINID = '🦊 Invalid chain id #:chainId'
+import ConnectWalletButton from "../components/ConnectWalletButton";
+import { providerOptions } from "../util";
 
 
+const ERR_INSTALL = 'You must install Metamask into your browser: https://metamask.io/download.html'
+const ERR_DISCONNECTED = 'wallet disconnected'
+const ERR_NOACCOUNTS = 'No selected address.'
+const ERR_UNKNOWN = 'Unknown error'
+const ERR_ASKCONNECT = 'Connect to Metamask using the button on the top right.'
+const ERR_CANCELLED = 'You cancelled requested operation.'
+const ERR_CHAINID = 'Invalid chain id #:chainId'
+
+const web3Modal = new Web3Modal({
+	cacheProvider: true, // optional
+	providerOptions, // required
+});
 interface HomeStatus {
 	query: string
 	loading: boolean
@@ -44,8 +52,33 @@ interface BaseStatus {
 	maxGasLimit: number
 }
 
+
 const Home = () => {
-	const { addedTokens, addToken, L, txs, addTx } = useStore();
+	// ///////////////////////////////*************///////////////////////////////////////////////
+	const [walletProvider, setWalletProvider] = useState<any>("");
+	const [walletSigner, setWalletSigner] = useState<any>("");
+
+	const setMainControl = async () => {
+		const { ethers } = window;
+		const provider = await web3Modal.connect();
+		const library: any = new ethers.providers.Web3Provider(provider);
+		setWalletProvider(library)
+		setWalletSigner(library?.getSigner())
+	}
+	useEffect(() => {
+		setMainControl()
+	}, [])
+	// useEffect(() => {
+	// 	console.log('walletProvider, walletSigner : ')
+	// 	console.log(walletProvider, walletSigner)
+	// }, [walletProvider, walletSigner])
+
+	// //////////////////////////////*************////////////////////////////////////////////////
+
+
+	const { addedTokens, addToken, L, txs, addTx, update } = useStore();
+	const G = useStore();
+
 	const refAmount = React.useRef<HTMLInputElement>(null)
 
 	const [chains, setChains] = React.useState<ListDataType[]>([])
@@ -128,10 +161,10 @@ const Home = () => {
 	}
 
 	React.useEffect(() => {
-		const { ethereum } = window;
-		if (ethereum) {
-			ethereum.on('accountsChanged', onChangeAccount);
-			ethereum.on('chainChanged', onChangeChainId);
+		// const { ethereum } = window;
+		if (walletProvider) {
+			walletProvider.provider.on('accountsChanged', onChangeAccount);
+			walletProvider.provider.on('chainChanged', onChangeChainId);
 		} else {
 			console.log("not found metamask")
 		}
@@ -166,12 +199,12 @@ const Home = () => {
 	}, [time]);
 
 	const _connect = async (chain: string, accounts?: Array<string>) => {
-		const { ethereum } = window
+		// const { ethereum } = window
 		let err = '';
 		try {
 			setWalletStatus({ ...walletStatus, status: CONNECTING, err: '' })
-			if (ethereum) {
-				if (accounts === undefined) accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+			if (walletProvider.provider) {
+				if (accounts === undefined) accounts = await walletProvider.provider.request({ method: 'eth_requestAccounts' })
 
 				if (accounts && accounts.length) {
 					const chainId = await getChainId();
@@ -188,21 +221,21 @@ const Home = () => {
 				err = ERR_INSTALL
 			}
 		} catch (error: any) {
-			err = '🦊 ' + error.message
+			err = error.message
 		}
 		setWalletStatus({ ...walletStatus, status: DISCONNECTED, address: '', err })
 	}
 
 	const addTokenToWallet = async (address: string, symbol: string, decimals: number) => {
-		const { ethereum } = window
-		if (ethereum) {
+		// const { ethereum } = window
+		if (walletProvider.provider) {
 			try {
 				if (addedTokens[`${status.chain}-${symbol}`]) return;
 				// wasAdded is a boolean. Like any RPC method, an error may be thrown.
 
 				let wasAdded: any;
 				if (symbol == "NEXTEP") {
-					wasAdded = await ethereum.request({
+					wasAdded = await walletProvider.provider.request({
 						method: 'wallet_watchAsset',
 						params: {
 							type: 'ERC20', // Initially only supports ERC20, but eventually more!
@@ -215,7 +248,7 @@ const Home = () => {
 						},
 					});
 				} else {
-					wasAdded = await ethereum.request({
+					wasAdded = await walletProvider.provider.request({
 						method: 'wallet_watchAsset',
 						params: {
 							type: 'ERC20', // Initially only supports ERC20, but eventually more!
@@ -241,9 +274,9 @@ const Home = () => {
 	}
 
 	const getChainId = async () => {
-		const { ethereum } = window
-		if (ethereum) {
-			return Number(await ethereum.request({ method: 'eth_chainId' }));
+		// const { ethereum } = window
+		if (walletProvider.provider) {
+			return Number(await walletProvider.provider.request({ method: 'eth_chainId' }));
 		}
 		return 0
 	}
@@ -277,10 +310,10 @@ const Home = () => {
 	}
 
 	const switchNetwork = async (chain: string) => {
-		const { ethereum } = window
-		if (ethereum) {
+		// const { ethereum } = window
+		if (walletProvider.provider) {
 			try {
-				await ethereum.request({
+				await walletProvider.provider.request({
 					method: 'wallet_switchEthereumChain',
 					params: [{ chainId: '0x' + networks[chain].chainId.toString(16) }],
 				});
@@ -292,11 +325,11 @@ const Home = () => {
 		return false;
 	}
 	const addNetwork = async (chain: string) => {
-		const { ethereum } = window
-		if (ethereum) {
+		// const { ethereum } = window
+		if (walletProvider.provider) {
 			try {
 				const chainId = networks[chain].chainId;
-				await ethereum.request({
+				await walletProvider.provider.request({
 					method: 'wallet_addEthereumChain',
 					params: [{
 						chainId: '0x' + chainId.toString(16),
@@ -346,66 +379,7 @@ const Home = () => {
 		console.log(token, balance)
 
 		const { receiveValue, fee } = getReceivedValue(status.chain, status.targetChain, token, Number(status.value));
-		console.log('receiveValue, fee : ')
-		console.log(receiveValue, fee)
 		set({ token, balance, receiveValue, fee })
-	}
-
-	const checkTxs = async () => {
-		// try {
-		// 	if (!isPending) {
-		// 		setPending(true)
-		// 		const params1:{[chainId:string]:Array<string>} = {};
-		// 		const params2:Array<string> = [];
-		// 		for(let k in G.pending) {
-		// 			const v = G.pending[k]
-		// 			const confirmations = txs[k]?.confirmations || 0
-		// 			if (networks[v.chain].confirmations > confirmations) {
-		// 				if (params1[v.chain]===undefined) params1[v.chain] = []
-		// 				params1[v.chain].push(k)
-		// 			} else {
-		// 				if (txs[k] && !txs[k].err && !txs[k].tx) params2.push(k)
-		// 			}
-		// 		}
-		// 		if (Object.keys(params1).length) {
-		// 			const res = await Promise.all(Object.keys(params1).map(k=>G.check(k, params1[k])))
-		// 			const txs:TxTypes = {...txs}
-		// 			const now = Math.round(new Date().getTime() / 1000)
-		// 			for(let v of res) {
-		// 				if (v) {
-		// 					for(let k in v) {
-		// 						if (v[k]===-1) {
-		// 							if (now - G.pending[k].created > 600) txs[k] = {...txs[k], err:true}
-		// 						} else {
-		// 							txs[k] = {...txs[k], confirmations:v[k]}
-		// 						}
-		// 					}
-		// 				}
-		// 			}
-		// 			G.setTxs(txs)
-		// 		}
-		// 		if (params2.length) {
-		// 			// const rows = await request('/get-txs', params2)
-		// 			// if (rows && Array.isArray(rows)) {
-		// 			// 	const now = Math.round(new Date().getTime() / 1000)
-		// 			// 	const txs:TxTypes = {...txs}
-		// 			// 	for(let v of rows) {
-		// 			// 		if (v.tx || (v.err && now - G.pending[v.key].created > 600)) {
-		// 			// 			txs[v.key] = {...txs[v.key], tx:v.tx, err:v.err, fee:v.fee}
-		// 			// 		}
-		// 			// 	}
-		// 			// 	G.setTxs(txs)
-		// 			// }
-		// 		}
-		// 		setPending(false)
-		// 	}
-		// } catch (err) {
-		// 	console.log(err)
-		// }
-	}
-
-	const onChangeQuery = (query: string) => {
-		set({ query })
 	}
 
 	const getReceivedValue = (chain: string, targetChain: string, token: string, amount: number) => {
@@ -516,8 +490,9 @@ const Home = () => {
 					return
 				}
 			}
-			const { ethers, ethereum } = window
-			const provider = new ethers.providers.Web3Provider(ethereum);
+			const { ethers } = window
+			// const {ethereum } = window;
+			const provider = new ethers.providers.Web3Provider(walletProvider.provider);
 			const contract = new ethers.Contract(net.bridge, [
 				"function deposit(address target, address token, uint amount, uint targetChain) external payable"
 			], provider)
@@ -541,7 +516,7 @@ const Home = () => {
 						value: '0x00',
 						chainId: ethers.utils.hexlify(net.chainId), // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
 					};
-					const txHash = await ethereum.request({
+					const txHash = await walletProvider.provider.request({
 						method: 'eth_sendTransaction',
 						params: [tx],
 					});
@@ -555,7 +530,7 @@ const Home = () => {
 					value: '0x00',
 					chainId: ethers.utils.hexlify(net.chainId),
 				};
-				const txId = await ethereum.request({
+				const txId = await walletProvider.provider.request({
 					method: 'eth_sendTransaction',
 					params: [tx],
 				});
@@ -570,7 +545,7 @@ const Home = () => {
 					value: value.toHexString(),
 					chainId: ethers.utils.hexlify(net.chainId),
 				};
-				const txId = await ethereum.request({
+				const txId = await walletProvider.provider.request({
 					method: 'eth_sendTransaction',
 					params: [tx],
 				});
@@ -609,7 +584,8 @@ const Home = () => {
 			<div className='container md'>
 				<header className='flex middle justify'>
 					<img src="/nextep.png" className='header-logo' alt="title" />
-					{walletStatus.address ? <span style={{ color: '#35ff35' }}>{`${walletStatus.address.slice(0, 10)}......${walletStatus.address.slice(-4)}`}</span> : <button className='btn button' onClick={() => connect()}>CONNECT WALLET</button>}
+					<ConnectWalletButton />
+
 				</header>
 				<main>
 					{/* <div className='mt-2 mb-1 flex center'>
